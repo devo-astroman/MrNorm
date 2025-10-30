@@ -15,11 +15,28 @@ public class AnimationManager : MonoBehaviour
     private void PlayIdle()
     {
         heroAnimator.SetBool("isRunning", false);
+        heroAnimator.SetBool("isFlying", false);
+        heroAnimator.SetBool("isFalling", false);
     }
 
     private void PlayRun()
     {
         heroAnimator.SetBool("isRunning", true);
+        heroAnimator.SetBool("isFlying", false);
+        heroAnimator.SetBool("isFalling", false);
+    }
+
+    private void PlayFly()
+    {
+        heroAnimator.SetBool("isFlying", true);
+        heroAnimator.SetBool("isFalling", false);
+    }
+
+    private void PlayFall()
+    {
+        heroAnimator.SetBool("isFlying", false);
+        heroAnimator.SetBool("isFalling", true);
+        heroAnimator.SetBool("isRunning", false);
     }
 
     void Update()
@@ -27,16 +44,34 @@ public class AnimationManager : MonoBehaviour
         float velocityX = rigidbody2D.velocity.x;
         float horizontalSpeed = Mathf.Abs(velocityX);
         
-        if (horizontalSpeed > movementThreshold)
-        {
-            PlayRun();
-        }
-        else
-        {
-            PlayIdle();
-        }
+        
 
         spriteRenderer.flipX = velocityX < 0;
+
+
+        float velocityY = rigidbody2D.velocity.y;
+        //float verticalSpeed = Mathf.Abs(velocityY);
+
+        if (velocityY < 0){
+            //is falling
+            PlayFall();
+
+        }else if (velocityY > 0){
+            PlayFly();
+        }else{ //(horizontalSpeed == 0)
+
+            if (horizontalSpeed > movementThreshold)
+            {
+                PlayRun();
+            }
+            else
+            {
+                PlayIdle();
+            }
+
+
+        }
+
 
         
     }
