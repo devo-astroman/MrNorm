@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
-    [Header("Animators")]
+    [Header("Hero")]
     [SerializeField] private Animator heroAnimator;
+    
     [SerializeField] private Rigidbody2D rigidbody2D;
     [SerializeField] private SpriteRenderer spriteRenderer;
+
+
+    [Header("Jetpack")]
+    [SerializeField] private HeroJetpackMovement heroJetpackMovement;
+    [SerializeField] private Animator jetpackAnimator;
+    [SerializeField] private SpriteRenderer jetpackSpriteRenderer;
+
+    [SerializeField] private Transform jetpackLeftPosition;
+    [SerializeField] private Transform jetpackRightPosition;
+
 
     [Header("Settings")]
     [SerializeField] private float movementThreshold = 0.05f; // prevents tiny movement noise
@@ -39,16 +50,38 @@ public class AnimationManager : MonoBehaviour
         heroAnimator.SetBool("isRunning", false);
     }
 
+    private void PlayJetpackOn()
+    {     
+        jetpackAnimator.SetBool("isOn",true);
+    }
+
+    private void PlayJetpackOff()
+    {
+        jetpackAnimator.SetBool("isOn",false);
+    }
+
+    private void Flip(float velocityX){
+
+        if(velocityX < 0){
+            spriteRenderer.flipX = true;
+            jetpackSpriteRenderer.flipX = true;            
+            jetpackSpriteRenderer.transform.position = jetpackLeftPosition.position;
+
+
+        }else if(velocityX > 0){
+            spriteRenderer.flipX = false;
+            jetpackSpriteRenderer.flipX = false;
+            jetpackSpriteRenderer.transform.position = jetpackRightPosition.position;
+        }
+
+    }
+
     void Update()
     {
         float velocityX = rigidbody2D.velocity.x;
         float horizontalSpeed = Mathf.Abs(velocityX);
 
-        if(velocityX < 0){
-            spriteRenderer.flipX = true;
-        }else if(velocityX > 0){
-            spriteRenderer.flipX = false;
-        }
+        Flip(velocityX);
 
 
         float velocityY = rigidbody2D.velocity.y;
@@ -71,6 +104,15 @@ public class AnimationManager : MonoBehaviour
                 PlayIdle();
             }
         }
+
+
+        bool isJetpackOn = heroJetpackMovement.GetIsJetpackOn();
+        if(isJetpackOn)            
+            PlayJetpackOn();
+        else
+            PlayJetpackOff();
         
     }
+
+
 }

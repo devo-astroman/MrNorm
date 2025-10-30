@@ -19,25 +19,12 @@ public class HeroJetpackMovement : MonoBehaviour
     [SerializeField] private float tiltAmount = 10f;            // Visual tilt when moving horizontally
     [SerializeField] private float tiltLerp = 8f;
 
-    
 
-    /* [SerializeField] private Animator jetBackpackAnimator;
-    [SerializeField] private Animator jetBackpackAnimator2;
-    [SerializeField] private Animator bodyAnimator; */
-
+    private bool thrusting = false;
+    private bool engineOn = false;
     public bool isJetpackOn = false;
 
-
-    /* private Rigidbody2D rb; */
     private float fuel;
-
-    void Awake()
-    {
-      /*   rb = GetComponent<Rigidbody2D>();
-        fuel = fuelSeconds; */
-        // Optional: slightly higher gravity for snappier feel (tune in Inspector)
-        // rb.gravityScale = 2f;
-    }
 
     void Update()
     {
@@ -51,14 +38,17 @@ public class HeroJetpackMovement : MonoBehaviour
         float targetZ = -x * tiltAmount;
         float z = Mathf.LerpAngle(transform.eulerAngles.z, targetZ, Time.deltaTime * tiltLerp);
         transform.rotation = Quaternion.Euler(0f, 0f, z);
+
+
+        float y = Input.GetAxisRaw("Vertical"); // w/s or arrows
+        engineOn = y > 0;
     }
+
 
     void FixedUpdate()
     {
         
-        bool thrusting = Input.GetKey(KeyCode.W);
-
-        if (thrusting && fuel > 0f)
+        if (engineOn && fuel > 0f)
         {
             isJetpackOn = true;
 
@@ -94,6 +84,6 @@ public class HeroJetpackMovement : MonoBehaviour
     }
 
     public bool GetIsJetpackOn(){
-        return isJetpackOn;
+        return engineOn;
     }
 }
