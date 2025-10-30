@@ -65,6 +65,11 @@ public class AnimationManager : MonoBehaviour
         heroAnimator.SetTrigger("receiveDamage");
     }
 
+    private void PlayDead()
+    {
+        heroAnimator.SetTrigger("isDead");
+    }
+
     private void Flip(float velocityX){
 
         if(velocityX < 0){
@@ -88,6 +93,7 @@ public class AnimationManager : MonoBehaviour
 
     private void HandleDied(){
         //fire the die animation
+        PlayDead();
     }
 
     void Start(){
