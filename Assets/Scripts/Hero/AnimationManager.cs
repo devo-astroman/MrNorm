@@ -7,7 +7,7 @@ public class AnimationManager : MonoBehaviour
     [Header("Hero")]
     [SerializeField] private Animator heroAnimator;
     
-    [SerializeField] private Rigidbody2D rigidbody2D;
+    [SerializeField] private Rigidbody2D rb2D;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
 
@@ -78,13 +78,13 @@ public class AnimationManager : MonoBehaviour
 
     void Update()
     {
-        float velocityX = rigidbody2D.velocity.x;
+        float velocityX = rb2D.velocity.x;
         float horizontalSpeed = Mathf.Abs(velocityX);
 
         Flip(velocityX);
 
 
-        float velocityY = rigidbody2D.velocity.y;
+        float velocityY = rb2D.velocity.y;
         //float verticalSpeed = Mathf.Abs(velocityY);
 
         if (velocityY < 0){
