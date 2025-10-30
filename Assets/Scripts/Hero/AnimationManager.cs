@@ -5,10 +5,10 @@ using UnityEngine;
 public class AnimationManager : MonoBehaviour
 {
     [Header("Hero")]
-    [SerializeField] private Animator heroAnimator;
-    
+    [SerializeField] private Animator heroAnimator;    
     [SerializeField] private Rigidbody2D rb2D;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private HeroDamageHandler heroDamageHandler;
 
 
     [Header("Jetpack")]
@@ -60,6 +60,11 @@ public class AnimationManager : MonoBehaviour
         jetpackAnimator.SetBool("isOn",false);
     }
 
+    private void PlayReceiveHit()
+    {
+        heroAnimator.SetTrigger("receiveDamage");
+    }
+
     private void Flip(float velocityX){
 
         if(velocityX < 0){
@@ -75,6 +80,21 @@ public class AnimationManager : MonoBehaviour
         }
 
     }
+
+    private void HandleHealthDown(){
+        //fire the hurt animation
+        PlayReceiveHit();
+    }
+
+    private void HandleDied(){
+        //fire the die animation
+    }
+
+    void Start(){
+        heroDamageHandler.OnHealthDown += HandleHealthDown;
+        heroDamageHandler.OnDied += HandleDied;
+    }
+
 
     void Update()
     {
