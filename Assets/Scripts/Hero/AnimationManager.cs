@@ -43,10 +43,12 @@ public class AnimationManager : MonoBehaviour
     {
         float velocityX = rigidbody2D.velocity.x;
         float horizontalSpeed = Mathf.Abs(velocityX);
-        
-        
 
-        spriteRenderer.flipX = velocityX < 0;
+        if(velocityX < 0){
+            spriteRenderer.flipX = true;
+        }else if(velocityX > 0){
+            spriteRenderer.flipX = false;
+        }
 
 
         float velocityY = rigidbody2D.velocity.y;
@@ -68,11 +70,7 @@ public class AnimationManager : MonoBehaviour
             {
                 PlayIdle();
             }
-
-
         }
-
-
         
     }
 }
