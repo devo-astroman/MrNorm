@@ -82,4 +82,12 @@ public class HeroJetpackMovement : MonoBehaviour
     public bool GetIsJetpackOn(){
         return engineOn;
     }
+
+    public void TurnJetpackOff(){
+        engineOn = false;
+    }
+
+    void OnDisable(){
+        engineOn = false;
+    }
 }
