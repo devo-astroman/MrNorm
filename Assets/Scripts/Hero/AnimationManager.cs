@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,10 @@ public class AnimationManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float movementThreshold = 0.05f; // prevents tiny movement noise
+
+
+    [Header("Notifiers")]
+    public Action OnPlayDead;
 
     private void PlayIdle()
     {
@@ -71,6 +76,8 @@ public class AnimationManager : MonoBehaviour
     private void PlayDead()
     {
         heroAnimator.SetTrigger("isDead");
+
+        OnPlayDead?.Invoke();
 
         //showing the jetpack on dead
         if(isActiveLeft){
