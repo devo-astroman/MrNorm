@@ -14,6 +14,8 @@ public class CheckpointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        checkpoints[0].SetChecked();
+        lastCheckpointChecked = checkpoints[0].gameObject;
         
         foreach(Checkpoint checkpoint in checkpoints ){
 
@@ -28,10 +30,8 @@ public class CheckpointManager : MonoBehaviour
         lastCheckpointChecked = checkpointGO;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+    public Vector3 GetLastCheckpointPosition(){
+        return lastCheckpointChecked.transform.position;
     }
 
 }

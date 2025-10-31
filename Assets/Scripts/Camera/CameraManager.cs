@@ -18,6 +18,11 @@ public class CameraManager : MonoBehaviour
         cameraHero.Follow = fallingJetpack;
     }
 
+    public void FollowHero(Transform hero)
+    {   Debug.Log("-----!!!!---FollowHero");
+        cameraHero.Follow = hero;
+    }
+
 
     // Start is called before the first frame update
     void Start()

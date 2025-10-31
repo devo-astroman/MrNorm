@@ -26,10 +26,18 @@ public class Checkpoint : MonoBehaviour
 
     private void HandleTriggerEnter(Collider2D collision)
     {
+        Check();
+    }
+
+    public void SetChecked()
+    {
+        Check();
+    }
+
+    private void Check(){
         animator.SetTrigger("check");
         OnChecked?.Invoke(id, gameObject);
         collisionHandler.InactiveCollisions();
     }
-
 
 }
