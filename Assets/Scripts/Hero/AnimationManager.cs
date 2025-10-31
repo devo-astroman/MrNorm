@@ -30,6 +30,10 @@ public class AnimationManager : MonoBehaviour
 
     [Header("Notifiers")]
     public Action OnPlayDead;
+    public Action OnFinishDeadAnimation;
+
+
+    private bool deadAnimationHasEnded = false;
 
     private void PlayIdle()
     {
@@ -78,7 +82,9 @@ public class AnimationManager : MonoBehaviour
         heroAnimator.SetTrigger("isDead");
 
         OnPlayDead?.Invoke();
+    }
 
+    private void PlayFallJetpack(){
         //showing the jetpack on dead
         if(isActiveLeft){
             jetpackOnDead.transform.position = jetpackLeftPosition.position;
@@ -163,8 +169,32 @@ public class AnimationManager : MonoBehaviour
             PlayJetpackOn();
         else
             PlayJetpackOff();
+
+        CheckDeadAnimationHasFinished();
         
     }
 
+
+    private void CheckDeadAnimationHasFinished(){
+        AnimatorStateInfo state = heroAnimator.GetCurrentAnimatorStateInfo(0);
+
+        // Check if THIS specific animation is playing
+        if (state.IsName("MN_die"))
+        {
+            // Check if finished
+            if (state.normalizedTime >= 1f && !state.loop && !deadAnimationHasEnded)
+            {
+                deadAnimationHasEnded = true;
+                Debug.Log("MN_die finished!");
+                PlayFallJetpack();
+                OnFinishDeadAnimation?.Invoke();
+            }
+        }
+        else
+        {
+            // If animation changed, reset flag
+            deadAnimationHasEnded = false;
+        }
+    }
 
 }

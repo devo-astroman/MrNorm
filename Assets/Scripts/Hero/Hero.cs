@@ -12,11 +12,12 @@ public class Hero : MonoBehaviour
 
     [Header("Notifiers")]
     public Action OnPlayDead;
+    public Action OnFinishDeadAnimation;
 
     // Start is called before the first frame update
     void Start()
     {
-        animationManager.OnPlayDead += OnPlayDead; 
+        animationManager.OnFinishDeadAnimation += OnFinishDeadAnimation; 
     }
 
     // Update is called once per frame

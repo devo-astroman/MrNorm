@@ -13,12 +13,12 @@ public class Level : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hero.OnPlayDead += HandleOnPlayDead;
+        hero.OnFinishDeadAnimation += HandleFinishDeadAnimation;
     }
 
-    private void HandleOnPlayDead()
+    private void HandleFinishDeadAnimation()
     {
-        Debug.Log("HandleOnPlayDead");
+        Debug.Log("HandleFinishDeadAnimation");
         cameraManager.FollowFallingJetpack();
     }
 
