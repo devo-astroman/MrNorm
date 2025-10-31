@@ -18,6 +18,9 @@ public class AnimationManager : MonoBehaviour
 
     [SerializeField] private Transform jetpackLeftPosition;
     [SerializeField] private Transform jetpackRightPosition;
+    private bool isActiveLeft = true;
+
+    [SerializeField] private GameObject jetpackOnDead;
 
 
     [Header("Settings")]
@@ -68,7 +71,21 @@ public class AnimationManager : MonoBehaviour
     private void PlayDead()
     {
         heroAnimator.SetTrigger("isDead");
+
+        //showing the jetpack on dead
+        if(isActiveLeft){
+            jetpackOnDead.transform.position = jetpackLeftPosition.position;
+            jetpackOnDead.SetActive(true);
+            jetpackSpriteRenderer.enabled = false;
+        }else{
+            jetpackOnDead.transform.position = jetpackRightPosition.position;
+            jetpackOnDead.SetActive(true);
+            jetpackSpriteRenderer.enabled = false;
+        }
+
     }
+
+    
 
     private void Flip(float velocityX){
 
@@ -76,12 +93,14 @@ public class AnimationManager : MonoBehaviour
             spriteRenderer.flipX = true;
             jetpackSpriteRenderer.flipX = true;            
             jetpackSpriteRenderer.transform.position = jetpackLeftPosition.position;
+            isActiveLeft = true;
 
 
         }else if(velocityX > 0){
             spriteRenderer.flipX = false;
             jetpackSpriteRenderer.flipX = false;
             jetpackSpriteRenderer.transform.position = jetpackRightPosition.position;
+            isActiveLeft = false;
         }
 
     }

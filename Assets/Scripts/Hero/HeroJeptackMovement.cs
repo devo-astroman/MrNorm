@@ -13,7 +13,7 @@ public class HeroJetpackMovement : MonoBehaviour
     [SerializeField] private float maxVerticalSpeed = 10f;      // Clamp vertical velocity
     [SerializeField] private float fuelSeconds = 999f;          // Seconds of thrust available (set big for unlimited)
     [SerializeField] private float fuelUsePerSecond = 1f;       // Fuel consumption when thrusting
-    [SerializeField] private float fuelRegenPerSecond = 0.3f;   // Fuel regen when not thrusting (set 0 to disable)
+    [SerializeField] private float fuelRegenPerSecond = 0.3f;   // Fuel regen when not thrusting (set 0 to disable)    
 
     [Header("Feel")]
     [SerializeField] private float tiltAmount = 10f;            // Visual tilt when moving horizontally
@@ -88,6 +88,6 @@ public class HeroJetpackMovement : MonoBehaviour
     }
 
     void OnDisable(){
-        engineOn = false;
+        engineOn = false;        
     }
 }
