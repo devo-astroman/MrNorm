@@ -3,16 +3,30 @@ using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
+    
     [Header("Tags to detect")]
     public string[] tags;
 
     [Header("Player Stats")]
     public Action<Collision2D> OnCollisionEnter;
     public Action<Collider2D> OnTriggerEnter;
+
+    private bool isActive = true;
+
+    public void InactiveCollisions()
+    {
+        isActive = false;
+    }
+
+    public void ActiveCollisions()
+    {
+        isActive = true;
+    }
+
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (HasTag(collision.collider.tag))
+        if (isActive && HasTag(collision.collider.tag))
         {
             OnCollisionEnter?.Invoke(collision);
         }
@@ -20,7 +34,7 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (HasTag(collision.tag))
+        if (isActive && HasTag(collision.tag))
         {
             OnTriggerEnter?.Invoke(collision);
         }
