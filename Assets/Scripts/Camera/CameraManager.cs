@@ -19,20 +19,9 @@ public class CameraManager : MonoBehaviour
     }
 
     public void FollowHero(Transform hero)
-    {   Debug.Log("-----!!!!---FollowHero");
+    {   
         cameraHero.Follow = hero;
     }
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

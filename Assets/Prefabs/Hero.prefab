@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2465446916494722063}
-  horizontalSpeed: 10
+  horizontalSpeed: 12
 --- !u!114 &7212938184342020150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2D: {fileID: 2465446916494722063}
-  thrustForce: 60
+  thrustForce: 30
   horizontalSpeed: 5
   maxVerticalSpeed: 10
   fuelSeconds: 999
