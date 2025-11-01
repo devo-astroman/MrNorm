@@ -89,3 +89,18 @@ Assets/StreamingAssets/aa/*
 
 *.stackdump
 *.log
+
+################################
+# Kevin Castejon FSM Cleanup
+################################
+
+# Ignore documentation
+Assets/KevinCastejon/StateMachines/Documentation/
+
+# Ignore example demo projects
+Assets/KevinCastejon/StateMachines/FiniteStateMachine/Demos/
+Assets/KevinCastejon/StateMachines/HierarchicalFiniteStateMachine/Demo/
+
+# Ignore editor code (optional — if you don't need FSM code generator UI)
+Assets/KevinCastejon/StateMachines/FiniteStateMachine/Core/Editor/
+Assets/KevinCastejon/StateMachines/HierarchicalFiniteStateMachine/Core/Editor/
