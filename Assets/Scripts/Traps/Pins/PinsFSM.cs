@@ -9,18 +9,30 @@ public struct Dependencies
     public SetTimeoutUtility timeoutWaitToShow;
     public SetTimeoutUtility timeoutWaitToHide;
     public Animator animator;
+    public Collider2D collider2D;
+    public float timeToShow;
+    public float timeToHide;
 }
 
 public class PinsFSM : AbstractFiniteStateMachine
 {   
 
+    [Header("References")]
     [SerializeField]  private Animator animator;
+    [SerializeField]  private Collider2D coll2D;
+    [SerializeField]  private float timeToShow = 2f;
+    [SerializeField]  private float timeToHide = 2f;
+
+    
 
     public Dependencies deps = new Dependencies
     {
         timeoutWaitToShow = null,
         timeoutWaitToHide = null,
-        animator = null
+        animator = null,
+        collider2D = null,
+        timeToShow = 2f,
+        timeToHide = 2f,
     };
 
 
@@ -34,6 +46,9 @@ public class PinsFSM : AbstractFiniteStateMachine
         deps.timeoutWaitToShow = new SetTimeoutUtility(this);
         deps.timeoutWaitToHide = new SetTimeoutUtility(this);
         deps.animator = animator;
+        deps.collider2D = coll2D;
+        deps.timeToShow = timeToShow;
+        deps.timeToHide = timeToHide;
 
         StateIdlehideState hide = AbstractState.Create<StateIdlehideState, States>(States.STATE_IDLEHIDE, this);
         hide.Setup(ref deps);
@@ -62,9 +77,9 @@ public class PinsFSM : AbstractFiniteStateMachine
             
             deps.animator.SetBool("show",true);
             deps.timeoutWaitToShow.SetTimeout(() => {
-                 TransitionToState(States.STATE_IDLESHOW);
-                
-            }, 2f);
+                deps.collider2D.enabled = false;
+                TransitionToState(States.STATE_IDLESHOW);                
+            }, deps.timeToShow);
         }
         public override void OnUpdate()
         {
@@ -84,7 +99,6 @@ public class PinsFSM : AbstractFiniteStateMachine
 
         private void Awake()
         {
-        //    timeoutWaitToHide = new SetTimeoutUtility(this);
         }
 
         public override void OnEnter()
@@ -92,16 +106,17 @@ public class PinsFSM : AbstractFiniteStateMachine
             
             deps.animator.SetBool("show",false);
             deps.timeoutWaitToHide.SetTimeout(() => {
-                 TransitionToState(States.STATE_IDLEHIDE);
+                deps.collider2D.enabled = true;
+                TransitionToState(States.STATE_IDLEHIDE);
                 
-            }, 2f);
+            }, deps.timeToHide);
         }
         public override void OnUpdate()
         {
         }
         public override void OnExit()
         {
-            
+
         }
     }
 
