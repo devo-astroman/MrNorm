@@ -8,8 +8,8 @@ public class CollisionHandler : MonoBehaviour
     public string[] tags;
 
     [Header("Player Stats")]
-    public Action<Collision2D> OnCollisionEnter;
-    public Action<Collider2D> OnTriggerEnter;
+    public Action<Collision2D, string> OnCollisionEnter;
+    public Action<Collider2D, string> OnTriggerEnter;
 
     private bool isActive = true;
 
@@ -28,7 +28,7 @@ public class CollisionHandler : MonoBehaviour
     {
         if (isActive && HasTag(collision.collider.tag))
         {
-            OnCollisionEnter?.Invoke(collision);
+            OnCollisionEnter?.Invoke(collision, collision.collider.tag);
         }
     }
 
@@ -36,7 +36,7 @@ public class CollisionHandler : MonoBehaviour
     {
         if (isActive && HasTag(collision.tag))
         {
-            OnTriggerEnter?.Invoke(collision);
+            OnTriggerEnter?.Invoke(collision, collision.tag);
         }
     }
 

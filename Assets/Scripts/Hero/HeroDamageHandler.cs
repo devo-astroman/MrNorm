@@ -28,13 +28,13 @@ public class HeroDamageHandler : MonoBehaviour
         
     }
 
-    private void HandleCollisionEnter(Collision2D collision){
-        Debug.Log("On collision Enter HeroDamageHandler ");
+    private void HandleCollisionEnter(Collision2D collision, string tag){
+        Debug.Log("On collision Enter HeroDamageHandler " + tag);
         NotifyDamage();
     }
 
-    private void HandleTriggerEnter(Collider2D collision){
-        Debug.Log("On TriggerEnter2D Enter HeroDamageHandler ");
+    private void HandleTriggerEnter(Collider2D collision, string tag){
+        Debug.Log("On TriggerEnter2D Enter HeroDamageHandler " + tag);
         NotifyDamage();
     }
 
@@ -49,7 +49,6 @@ public class HeroDamageHandler : MonoBehaviour
             }else{
                 OnHealthDown?.Invoke();
                 StartCoroutine(SetTimeout(() => {
-                    Debug.Log("2 seconds passed!");
                     allowDamage=true;
                 }, coolDown));
             }

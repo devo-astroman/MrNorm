@@ -24,7 +24,7 @@ public class Checkpoint : MonoBehaviour
         collisionHandler.OnTriggerEnter += HandleTriggerEnter;
     }
 
-    private void HandleTriggerEnter(Collider2D collision)
+    private void HandleTriggerEnter(Collider2D collision, string tag)
     {
         Check();
     }
