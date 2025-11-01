@@ -3,11 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using KevinCastejon.FiniteStateMachine;
+
+public struct Dependencies
+{
+    public SetTimeoutUtility timeoutWaitToShow;
+    public SetTimeoutUtility timeoutWaitToHide;
+    public Animator animator;
+}
+
 public class PinsFSM : AbstractFiniteStateMachine
 {   
 
-    private SetTimeoutUtility timeoutWaitToShow;
-    private SetTimeoutUtility timeoutWaitToHide;
+    [SerializeField]  private Animator animator;
+
+    public Dependencies deps = new Dependencies
+    {
+        timeoutWaitToShow = null,
+        timeoutWaitToHide = null,
+        animator = null
+    };
+
 
     public enum States
     {
@@ -16,14 +31,15 @@ public class PinsFSM : AbstractFiniteStateMachine
     }
     private void Awake()
     {
-        timeoutWaitToShow = new SetTimeoutUtility(this);
-        timeoutWaitToHide = new SetTimeoutUtility(this);
+        deps.timeoutWaitToShow = new SetTimeoutUtility(this);
+        deps.timeoutWaitToHide = new SetTimeoutUtility(this);
+        deps.animator = animator;
 
         StateIdlehideState hide = AbstractState.Create<StateIdlehideState, States>(States.STATE_IDLEHIDE, this);
-        hide.Setup(timeoutWaitToShow);
+        hide.Setup(ref deps);
 
         StateIdleshowState show = AbstractState.Create<StateIdleshowState, States>(States.STATE_IDLESHOW, this);
-        show.Setup(timeoutWaitToHide);
+        show.Setup(ref deps);
 
 
         Init(States.STATE_IDLEHIDE,
@@ -34,15 +50,18 @@ public class PinsFSM : AbstractFiniteStateMachine
 
     public class StateIdlehideState : AbstractState
     {
-        private SetTimeoutUtility timeoutWaitToShow;
+        private Dependencies deps;
 
-        public void Setup(SetTimeoutUtility timeout) => timeoutWaitToShow = timeout;
+        public void Setup(ref Dependencies dependencies) {
+            deps = dependencies;
+        }
 
 
         public override void OnEnter()
         {
-            Debug.Log("IdleHide OnEnter");
-            timeoutWaitToShow.SetTimeout(() => {
+            
+            deps.animator.SetBool("show",true);
+            deps.timeoutWaitToShow.SetTimeout(() => {
                  TransitionToState(States.STATE_IDLESHOW);
                 
             }, 2f);
@@ -52,15 +71,16 @@ public class PinsFSM : AbstractFiniteStateMachine
         }
         public override void OnExit()        
         {
-            Debug.Log("IdleHide OnExit");
+            
         }
     }
     public class StateIdleshowState : AbstractState
     {
-        private SetTimeoutUtility timeoutWaitToHide;
-        
+        private Dependencies deps;
 
-        public void Setup(SetTimeoutUtility timeout) => timeoutWaitToHide = timeout;
+        public void Setup(ref Dependencies dependencies) {
+            deps = dependencies;
+        }
 
         private void Awake()
         {
@@ -69,8 +89,9 @@ public class PinsFSM : AbstractFiniteStateMachine
 
         public override void OnEnter()
         {
-            Debug.Log("IdleShow OnEnter");
-            timeoutWaitToHide.SetTimeout(() => {
+            
+            deps.animator.SetBool("show",false);
+            deps.timeoutWaitToHide.SetTimeout(() => {
                  TransitionToState(States.STATE_IDLEHIDE);
                 
             }, 2f);
@@ -80,7 +101,7 @@ public class PinsFSM : AbstractFiniteStateMachine
         }
         public override void OnExit()
         {
-            Debug.Log("IdleShow OnExit");
+            
         }
     }
 
