@@ -6,12 +6,11 @@ using UnityEngine;
 public class Pins : MonoBehaviour
 {
 
-    
+    [SerializeField]  private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-    
     }
 
     // Update is called once per frame
@@ -19,4 +18,22 @@ public class Pins : MonoBehaviour
     {
         
     }
+
+    public void Activate(){
+        
+    }
+
+    public void Dectivate(){
+        
+    }
+
+    public void ShowPins(){
+        animator.SetBool("show",true);
+    }
+
+    public void HidePins(){
+        animator.SetBool("show",false);
+    }
+
+
 }

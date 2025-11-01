@@ -35,8 +35,6 @@ public class Level : MonoBehaviour
     private void RespanwnHero()
     {
         timeout.SetTimeout(() => {
-            Debug.Log("Hello after 2 seconds");
-            //hero.InactiveHero();
             Vector3 position = checkpointManager.GetLastCheckpointPosition();
             Destroy(hero.gameObject);
             GameObject newHero = Instantiate(heroPrefab, position, Quaternion.identity);
