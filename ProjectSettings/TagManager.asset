@@ -8,6 +8,7 @@ TagManager:
   - Hero
   - Damager_25
   - Damager_50
+  - Takeable_C
   layers:
   - Default
   - TransparentFX
