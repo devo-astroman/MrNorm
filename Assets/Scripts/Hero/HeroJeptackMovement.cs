@@ -6,6 +6,9 @@ public class HeroJetpackMovement : MonoBehaviour
 {
     [Header("References")]    
     [SerializeField] private Rigidbody2D rb2D;          // Upward force while holding Ctrl
+    [SerializeField] private PhysicsMaterial2D pm2D;          // No friction material
+    [SerializeField] private GroundCheck groundCheck;
+
 
     [Header("Jetpack")]
     [SerializeField] private float thrustForce = 15f;          // Upward force while holding Ctrl
@@ -24,6 +27,19 @@ public class HeroJetpackMovement : MonoBehaviour
 
     private float fuel;
 
+    void Start(){
+        groundCheck.OnGround += RemoveNoFrictionMaterial;
+        groundCheck.OnGroundOff += AddNoFrictionMaterial; 
+    }
+
+    private void AddNoFrictionMaterial(){
+        rb2D.sharedMaterial = pm2D;
+    }
+
+    private void RemoveNoFrictionMaterial(){
+        rb2D.sharedMaterial = null;
+    }
+
     void Update()
     {
         // Horizontal input (optional)
@@ -40,6 +56,7 @@ public class HeroJetpackMovement : MonoBehaviour
 
         float y = Input.GetAxisRaw("Vertical"); // w/s or arrows
         engineOn = y > 0;
+
     }
 
 
@@ -57,7 +74,6 @@ public class HeroJetpackMovement : MonoBehaviour
         }
         else
         {
-            
             // Regenerate fuel when not thrusting
             if (fuelRegenPerSecond > 0f)
                 fuel = Mathf.Min(fuelSeconds, fuel + fuelRegenPerSecond * Time.fixedDeltaTime);
