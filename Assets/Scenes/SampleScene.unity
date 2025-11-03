@@ -3595,7 +3595,7 @@ GameObject:
   - component: {fileID: 1769922662}
   - component: {fileID: 1769922661}
   - component: {fileID: 1769922660}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12357,13 +12357,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4772052296226841607, guid: 137c0bf98a1d3fc4cb781fd0662e9373, type: 3}
+      propertyPath: checkDistance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6811251736608525117, guid: 137c0bf98a1d3fc4cb781fd0662e9373, type: 3}
       propertyPath: m_Name
       value: Hero
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037245028632514716, guid: 137c0bf98a1d3fc4cb781fd0662e9373, type: 3}
-      propertyPath: maxHealth
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
