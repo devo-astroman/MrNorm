@@ -6,7 +6,7 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
 
-    [SerializeField] private HeroHorizontalMovement heroHorizontalMovement;
+    //[SerializeField] private HeroHorizontalMovement heroHorizontalMovement;
     [SerializeField] private AnimationManager animationManager;
     [SerializeField] private Collider2D heroCollider;
 

@@ -115,7 +115,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8356932511940009571}
-  - component: {fileID: 7479301890943175812}
   - component: {fileID: 7212938184342020150}
   m_Layer: 0
   m_Name: Physics
@@ -139,20 +138,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1830613069859123562}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7479301890943175812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799380222317772651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f435ddbf24f5efc41b2ecb34d44d65ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 2465446916494722063}
-  horizontalSpeed: 12
 --- !u!114 &7212938184342020150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 2465446916494722063}
   thrustForce: 30
-  horizontalSpeed: 5
+  horizontalSpeed: 12
   maxVerticalSpeed: 10
   fuelSeconds: 999
   fuelUsePerSecond: 1
@@ -591,7 +576,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroDamageHandler: {fileID: 8037245028632514716}
-  heroHorizontalMovement: {fileID: 7479301890943175812}
   heroJetpackMovement: {fileID: 7212938184342020150}
 --- !u!1 &6600128851636766021
 GameObject:
@@ -638,7 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionHandler: {fileID: 6302184453055962563}
-  maxHealth: 1
+  maxHealth: 5
   coolDown: 2
 --- !u!1 &6811251736608525117
 GameObject:
@@ -687,7 +671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6ccb2cd6f523e4eb82364b9a76a7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroHorizontalMovement: {fileID: 7479301890943175812}
   animationManager: {fileID: 4297523418946164999}
   heroCollider: {fileID: 1001197428930479197}
 --- !u!1 &7899882660125414676
@@ -804,6 +787,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tags:
   - Damager
+  - Damager_25
+  - Damager_50
 --- !u!1 &7949988217030864923
 GameObject:
   m_ObjectHideFlags: 0

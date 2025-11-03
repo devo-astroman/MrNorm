@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Damager
   - Hero
+  - Damager_25
+  - Damager_50
   layers:
   - Default
   - TransparentFX
