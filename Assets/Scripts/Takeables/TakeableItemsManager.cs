@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class TakeableItemManager : MonoBehaviour
 {
-
     [Header("Items")]
     [SerializeField] private TakeableItem[] allCoins;
     private readonly List<TakeableItem> coinsTaken = new();
 
+    [SerializeField] private GameObject coinsParent;
+
     private void Awake()
-    {        
+    {
+        // Get all TakeableItem components in children of coinsParent
+        allCoins = coinsParent.GetComponentsInChildren<TakeableItem>();
     }
 
     private void OnEnable()
     {
-        
-        //loop through al coins and add the method
         int id = 0;
-        foreach(TakeableItem c in allCoins){
+        foreach (TakeableItem c in allCoins)
+        {
+            if (c == null) continue;
             c.SetId(id);
             c.OnTakeItem += OnItemTaken;
             id++;
@@ -27,9 +30,10 @@ public class TakeableItemManager : MonoBehaviour
 
     private void OnDisable()
     {
-        //loop through al coins and add the method
-        foreach(TakeableItem c in allCoins){
-            c.OnTakeItem += OnItemTaken;
+        foreach (TakeableItem c in allCoins)
+        {
+            if (c == null) continue;
+            c.OnTakeItem -= OnItemTaken; // ✅ Correct: remove event listener
         }
     }
 
@@ -37,19 +41,11 @@ public class TakeableItemManager : MonoBehaviour
     {
         if (item == null) return;
 
-        // Hide the item that was taken
-        item.Hide();
+        item.Hide(); // Hide the item
 
-        // If it's a coin, track it
-        if (type == "Coin")
+        if (type == "Coin" && !coinsTaken.Contains(item))
         {
-            // Avoid duplicates
-            if (!coinsTaken.Contains(item))
-                coinsTaken.Add(item);
-
-            // (Optional) If you really need to find by id in allCoins:
-            // var coinById = Array.Find(allCoins, c => c != null && c.Id == id);
-            // coinById?.Hide();
+            coinsTaken.Add(item);
         }
     }
 }
