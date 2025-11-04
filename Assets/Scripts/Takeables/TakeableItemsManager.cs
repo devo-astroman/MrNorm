@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class TakeableItemManager : MonoBehaviour
 {
-    [Header("Items")]
-    [SerializeField] private TakeableItem[] allCoins;
+    [Header("Coins")]
+    [SerializeField] private GameObject coinsParent;
+    private TakeableItem[] allCoins;
     private readonly List<TakeableItem> coinsTaken = new();
 
-    [SerializeField] private GameObject coinsParent;
+    [Header("Diamond Dash")]
+    [SerializeField] private GameObject diamonsDashParent;
+    private TakeableItem[] allDiamondsDash;
+    private readonly List<TakeableItem> diamondsDashTaken = new();
+
 
     private void Awake()
     {
@@ -46,6 +51,9 @@ public class TakeableItemManager : MonoBehaviour
         if (type == "Coin" && !coinsTaken.Contains(item))
         {
             coinsTaken.Add(item);
+        }else if(type == "DiamondDash" && !diamondsDashTaken.Contains(item))
+        {
+            diamondsDashTaken.Add(item);
         }
     }
 }
