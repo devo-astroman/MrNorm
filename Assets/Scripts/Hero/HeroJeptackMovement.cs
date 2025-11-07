@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeroJetpackMovement : MonoBehaviour
 {
-    [Header("References")]    
+    [Header("References")]
     [SerializeField] private Rigidbody2D rb2D;          // Upward force while holding Ctrl
     [SerializeField] private PhysicsMaterial2D pm2D;          // No friction material
     [SerializeField] private GroundCheck groundCheck;
