@@ -28,8 +28,7 @@ public class Elevator : MonoBehaviour
     }
 
 
-    public void CloneTravelerAtEntrance(){
-        
+    public void CloneTravelerAtEntrance(){        
 
         if(!isTraveling){
             activeTraveler = Instantiate(travelerPrefab, Vector2.zero, Quaternion.identity);
@@ -37,8 +36,29 @@ public class Elevator : MonoBehaviour
 
             CloseElevatorStart();
 
+            elevatorEnd.SetTravelerTarget(activeTraveler);
+
             isTraveling = true;
-        }
-        
+        }        
+    }
+
+
+    public void OpenElevatorEnd(){
+        print("OpenElevatorEnd");
+        elevatorEnd.OpenElevator();
+    }
+
+    public void DestroyTraveler(){        
+
+        if(isTraveling){
+            Destroy(activeTraveler);
+            CloseElevatorEnd();
+
+            isTraveling = false;
+        }        
+    }
+
+    public void CloseElevatorEnd(){
+        elevatorEnd.CloseElevator();
     }
 }

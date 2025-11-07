@@ -8,8 +8,9 @@ public class ElevatorEnd : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
-    //[SerializeField] private GameObject travelerPrefab;
-    //[SerializeField] private Transform entrance;
+    [SerializeField] private GameObject travelerTarget;
+    [SerializeField] private CollisionWithHandler collisionWithHandler;
+    
 
     private GameObject activeTraveler = null;
 
@@ -24,7 +25,8 @@ public class ElevatorEnd : MonoBehaviour
     }
 
 
-    public void CloneTravelerAtEntrance(){
-        
+    public void SetTravelerTarget(GameObject traveler){
+        travelerTarget = traveler;
+        collisionWithHandler.SetTargetCollider2D(travelerTarget.GetComponent<Collider2D>());
     }
 }
