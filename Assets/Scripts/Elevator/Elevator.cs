@@ -44,8 +44,9 @@ public class Elevator : MonoBehaviour
 
 
     public void OpenElevatorEnd(){
-        print("OpenElevatorEnd");
         elevatorEnd.OpenElevator();
+        HorizontalMovement horizontalMovement = activeTraveler.GetComponent<HorizontalMovement>();
+        horizontalMovement.SetHorizontalSpeed(0);
     }
 
     public void DestroyTraveler(){        
