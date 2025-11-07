@@ -29,8 +29,10 @@ public class ObstacleCheck : MonoBehaviour
         if(right)   return obstacleChecker.right;
         else if(left)    return obstacleChecker.right*-1;
         else if(up)    return obstacleChecker.up;
+        else if(down)    return obstacleChecker.up*-1;
         
-        return obstacleChecker.up*-1;
+        Debug.Log("Wanning right, left, up and down are all false, at least one should be true, by default returning 'right'");
+        return obstacleChecker.right;
     }
 
 
