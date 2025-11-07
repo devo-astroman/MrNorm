@@ -20,7 +20,8 @@ public class Elevator : MonoBehaviour
 
     public void OpenElevatorStart(){
 
-        elevatorStart.OpenElevator();
+        if(!isTraveling)
+            elevatorStart.OpenElevator();
     }
 
     public void CloseElevatorStart(){
