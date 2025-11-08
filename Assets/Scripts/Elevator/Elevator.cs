@@ -10,12 +10,36 @@ public class Elevator : MonoBehaviour
 
 
     [SerializeField] private ElevatorStart elevatorStart;
-    [SerializeField] private Transform entrance;
+    //[SerializeField] private Transform entrance;
+
+    private SetIntervalUtility interval;
+    private bool isLooping = false;
+    [SerializeField] private float loopTime = 2f;
+    [SerializeField] private bool changeEnemyStartEnemyDirection = false;
+    private bool flippedEnemyDirection = false;
 
 
     [SerializeField] private ElevatorEnd elevatorEnd;
 
     private bool isTraveling = false;
+
+    void Start()
+    {
+        interval = new SetIntervalUtility(this);
+    }
+    
+    public void LoopOpenElevator(){
+
+        if(!isLooping){
+            isLooping = true;
+            OpenElevatorStart();
+            interval.SetInterval(() => {
+                if(!isTraveling)
+                    OpenElevatorStart();
+                
+            }, loopTime);
+        }
+    }
     
 
     public void OpenElevatorStart(){
@@ -32,7 +56,8 @@ public class Elevator : MonoBehaviour
     public void CloneTravelerAtEntrance(){        
 
         if(!isTraveling){
-            activeTraveler = Instantiate(travelerPrefab, Vector2.zero, Quaternion.identity);
+            //activeTraveler = Instantiate(travelerPrefab, Vector2.zero, Quaternion.identity);
+            activeTraveler = CreateTraveler();
             elevatorStart.PlaceAtEntrace(activeTraveler.transform);
 
             CloseElevatorStart();
@@ -41,6 +66,27 @@ public class Elevator : MonoBehaviour
 
             isTraveling = true;
         }        
+    }
+
+    private GameObject CreateTraveler(){
+        activeTraveler = Instantiate(travelerPrefab, Vector2.zero, Quaternion.identity);
+
+        if(changeEnemyStartEnemyDirection){
+            HorizontalMovement horizontalMovement = activeTraveler.GetComponent<HorizontalMovement>();
+
+            SpriteFlipperX spriteFlipperX = activeTraveler.GetComponent<SpriteFlipperX>();
+
+            if(flippedEnemyDirection){
+                horizontalMovement.InvertSpeed();
+                spriteFlipperX.FlipX();
+                
+            }
+
+            flippedEnemyDirection = !flippedEnemyDirection;
+
+        }
+
+        return activeTraveler;
     }
 
 

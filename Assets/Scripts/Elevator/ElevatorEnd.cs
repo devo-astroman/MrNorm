@@ -12,10 +12,6 @@ public class ElevatorEnd : MonoBehaviour
     [SerializeField] private CollisionWithHandler collisionWithHandler;
     
 
-    private GameObject activeTraveler = null;
-
-    
-
     public void OpenElevator(){
         animator.SetTrigger("open");
     }
