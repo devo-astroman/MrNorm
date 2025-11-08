@@ -104,7 +104,7 @@ public class DashMovement : MonoBehaviour
     {
         isDashing = false;
         currentDir = Dir.None;
-        //rb.velocity = Vector2.zero; // hard stop (optional)
+        rb.velocity = Vector2.zero; // hard stop (optional)
     }
 
     private bool IsWallInFront(Dir dir)
