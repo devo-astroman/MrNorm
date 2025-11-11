@@ -12,6 +12,9 @@ public class Level : MonoBehaviour
     [SerializeField]  private CheckpointManager checkpointManager;
     [SerializeField]  private GameObject heroPrefab;
     [SerializeField]  private SoundManager soundManager;
+    [SerializeField]  private TakeableItemManager takeableItemManager;
+    [SerializeField]  private FinalPresenter finalPresenter;
+    
 
     [Header("Notifiers")]
     public Action OnHeroHurt;
@@ -23,8 +26,30 @@ public class Level : MonoBehaviour
     void Start()
     {
         timeout = new SetTimeoutUtility(this);
+        SetupManagers();
         SetupHero();
     }
+
+    private void SetupManagers(){
+        takeableItemManager.OnCoinTake += HandleCoinTake;
+        checkpointManager.OnTouchCheckpoint += HandleTouchCheckpoint;
+        finalPresenter.OnShowCongrats += HandleShowCongrats;
+    }
+
+    private void HandleCoinTake(){
+        soundManager.HandleCoinTake();
+    }
+
+    private void HandleTouchCheckpoint(){
+        soundManager.HandleTouchCheckpoint();
+    }
+
+    private void HandleShowCongrats(){
+        soundManager.HandleShowCongrats();
+    }
+
+
+    
 
     private void SetupHero(){
         hero.OnFinishDeadAnimation += HandleFinishDeadAnimation;

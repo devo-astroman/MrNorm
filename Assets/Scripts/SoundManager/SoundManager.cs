@@ -38,7 +38,26 @@ public class SoundManager : MonoBehaviour
         //playdead
     }
 
+    public void HandleCoinTake(){
+        PlayCoinSfx();
+    }
+
+    public void HandleTouchCheckpoint(){
+        PlayCheckpointSfx();
+    }
     
+    public void PlayCheckpointSfx(){
+        playerSfx.PlayCheckpointSfx();
+    }
+
+//
+    public void HandleShowCongrats(){
+        PlayCongratsSfx();
+    }
+    
+    public void PlayCongratsSfx(){
+        playerSfx.PlayCongratsSfx();
+    }
 
 
 }

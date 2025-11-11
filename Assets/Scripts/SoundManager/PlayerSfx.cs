@@ -8,6 +8,8 @@ public class PlayerSfx : MonoBehaviour
     [SerializeField] private AudioSource aSource;
     [SerializeField] private AudioClip coinClip;
     [SerializeField] private AudioClip hurtClip;
+    [SerializeField] private AudioClip checkpointClip;
+    [SerializeField] private AudioClip congratsClip;
 
     void Start(){}
 
@@ -22,6 +24,18 @@ public class PlayerSfx : MonoBehaviour
     public void PlayHurtSfx(){
         Debug.Log("Play hurt");
         aSource.clip = hurtClip;
+        aSource.Play();
+    }
+
+    public void PlayCheckpointSfx(){
+        Debug.Log("Play checkpoint");
+        aSource.clip = checkpointClip;
+        aSource.Play();
+    }
+
+    public void PlayCongratsSfx(){
+        Debug.Log("Play congrats");
+        aSource.clip = congratsClip;
         aSource.Play();
     }
 

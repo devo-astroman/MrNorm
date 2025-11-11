@@ -15,6 +15,8 @@ public class TakeableItemManager : MonoBehaviour
     private TakeableItem[] allDiamondsDash;
     private readonly List<TakeableItem> diamondsDashTaken = new();
 
+    [Header("Notifiers")]
+    public Action OnCoinTake;
 
     private void Awake()
     {
@@ -53,6 +55,8 @@ public class TakeableItemManager : MonoBehaviour
         if (type == "Coin" && !coinsTaken.Contains(item))
         {
             coinsTaken.Add(item);
+            OnCoinTake?.Invoke();
+
         }else if(type == "DiamondDash" && !diamondsDashTaken.Contains(item))
         {
             diamondsDashTaken.Add(item);

@@ -20,6 +20,10 @@ public class FinalPresenter : MonoBehaviour
 
     private SetTimeoutUtility timeout;
 
+
+    [Header("Notifiers")]
+    public Action OnShowCongrats;
+
     
     
     /* [Header("Notifiers")]
@@ -34,6 +38,8 @@ public class FinalPresenter : MonoBehaviour
         Debug.Log("Process final!");
 
         timeout.SetTimeout(() => {
+
+            OnShowCongrats?.Invoke();
 
             List<TakeableItem> coinsTaken = takeableItemManager.GetCoinsTaken();
 

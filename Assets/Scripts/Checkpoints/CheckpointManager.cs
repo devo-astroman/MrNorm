@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class CheckpointManager : MonoBehaviour
     [SerializeField] Checkpoint[] checkpoints;
 
     private GameObject lastCheckpointChecked;
+
+    [Header("Notifiers")]
+    public Action OnTouchCheckpoint;
 
 
     // Start is called before the first frame update
@@ -28,6 +32,7 @@ public class CheckpointManager : MonoBehaviour
     {
         Debug.Log("Last " + id);
         lastCheckpointChecked = checkpointGO;
+        OnTouchCheckpoint?.Invoke();
     }
 
     public Vector3 GetLastCheckpointPosition(){
