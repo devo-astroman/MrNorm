@@ -24,6 +24,10 @@ public class HeroStates : MonoBehaviour
         
     }
 
+    void Destroy(){
+        heroDamageHandler.OnDied -= HandleDied;
+    }
+
 
 }
 

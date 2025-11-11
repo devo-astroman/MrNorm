@@ -8,6 +8,7 @@ public class TakeableItemManager : MonoBehaviour
     [SerializeField] private GameObject coinsParent;
     private TakeableItem[] allCoins;
     private readonly List<TakeableItem> coinsTaken = new();
+    private int nTotalCoins = 0;
 
     [Header("Diamond Dash")]
     [SerializeField] private GameObject diamonsDashParent;
@@ -31,6 +32,7 @@ public class TakeableItemManager : MonoBehaviour
             c.OnTakeItem += OnItemTaken;
             id++;
         }
+        nTotalCoins = id;
     }
 
     private void OnDisable()
@@ -55,5 +57,14 @@ public class TakeableItemManager : MonoBehaviour
         {
             diamondsDashTaken.Add(item);
         }
+    }
+
+    public List<TakeableItem> GetCoinsTaken(){
+
+        return coinsTaken;
+    }
+
+    public int GetNTotalCoins(){
+        return nTotalCoins;
     }
 }

@@ -44,10 +44,11 @@ public class HeroDamageHandler : MonoBehaviour
             allowDamage = false;
             currentHealth -= 1;
 
+            OnHealthDown?.Invoke();
             if(currentHealth == 0){
                 OnDied?.Invoke();
             }else{
-                OnHealthDown?.Invoke();
+                //OnHealthDown?.Invoke();
                 StartCoroutine(SetTimeout(() => {
                     allowDamage=true;
                 }, coolDown));
