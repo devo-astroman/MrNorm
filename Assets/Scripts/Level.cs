@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,11 @@ public class Level : MonoBehaviour
     [SerializeField]  private Hero hero;
     [SerializeField]  private CheckpointManager checkpointManager;
     [SerializeField]  private GameObject heroPrefab;
+    [SerializeField]  private SoundManager soundManager;
 
+    [Header("Notifiers")]
+    public Action OnHeroHurt;
+    public Action OnHeroDead;
 
     private SetTimeoutUtility timeout;
 
@@ -23,7 +28,18 @@ public class Level : MonoBehaviour
 
     private void SetupHero(){
         hero.OnFinishDeadAnimation += HandleFinishDeadAnimation;
+        hero.OnHeroHurt += HandleHeroHurt;
+        hero.OnHeroDead += OnHeroDead;
     }
+
+    private void HandleHeroHurt(){
+        soundManager.HandleHeroHurt();
+    }
+    
+    private void HandleHeroDied(){
+        soundManager.HandleHeroDied();
+    }
+
 
     private void HandleFinishDeadAnimation()
     {
