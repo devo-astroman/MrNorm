@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -15,10 +14,12 @@ public class FinalPresenter : MonoBehaviour
     [SerializeField] private GameObject goldMedal;
     [SerializeField] private GameObject trophy;
 
-    [SerializeField] private GameObject canvas;
-    [SerializeField] private TMP_Text messageText;
-
     [SerializeField] private Collider2D detector;
+
+
+    [SerializeField] private GameObject canvasGo;
+    [SerializeField] private TMP_Text topText;
+    [SerializeField] private TMP_Text bottomText;
 
     private SetTimeoutUtility timeout;
 
@@ -26,10 +27,6 @@ public class FinalPresenter : MonoBehaviour
     [Header("Notifiers")]
     public Action OnShowCongrats;
 
-    
-    
-    /* [Header("Notifiers")]
-    public Action<TakeableItem, string, int> OnTakeItem; */
 
     void Start(){
         timeout = new SetTimeoutUtility(this);
@@ -37,24 +34,18 @@ public class FinalPresenter : MonoBehaviour
 
     public void ProcessFinal()
     {
-        Debug.Log("Process final!");
 
         detector.enabled = false;
 
-        timeout.SetTimeout(() => {
-
-            
+        timeout.SetTimeout(() => {            
 
             OnShowCongrats?.Invoke();
 
             List<TakeableItem> coinsTaken = takeableItemManager.GetCoinsTaken();
 
-            //print the content of 
-            Debug.Log("coinsTaken: " +  coinsTaken.Count);
-
             int nTotalCoins = takeableItemManager.GetNTotalCoins();
-            Debug.Log("total coins: " +  nTotalCoins);
 
+            canvasGo.SetActive(true);
 
             if(coinsTaken.Count < nTotalCoins/3){
                 showMessage(coinsTaken.Count,"Bronze");
@@ -103,15 +94,15 @@ public class FinalPresenter : MonoBehaviour
 
     private void showMessage(int nCoins, string medal)
     {
-        messageText.text = "Congratulations! you have collected " + nCoins + " coins, so you have earnt the " + medal + " medal";
-        canvas.SetActive(true);
+        topText.text = $"Congrats! you have collected {nCoins} coins.";
+        bottomText.text = $"You have earnt the {medal} medal!";
     }
     
     public void ResetFinalMessage(){
 
-        detector.enabled = true;
-        canvas.SetActive(false);
+        detector.enabled = true;        
         HideAllPrizes();
+        canvasGo.SetActive(false);
     }
 
     
