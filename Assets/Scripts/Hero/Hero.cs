@@ -42,9 +42,9 @@ public class Hero : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public int GetHeroHealth()
     {
-        
+        return heroDamageHandler.GetCurrentHealth();
     }
 
     void Destroy()

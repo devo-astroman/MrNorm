@@ -9,7 +9,7 @@ public class HeroDamageHandler : MonoBehaviour
     [SerializeField] private CollisionHandler collisionHandler;
 
     [Header("Health values")]
-    [SerializeField] private int maxHealth = 5;
+    [SerializeField] private int maxHealth = 3;
     [SerializeField] private float coolDown = 2;
 
 
@@ -23,10 +23,11 @@ public class HeroDamageHandler : MonoBehaviour
 
     private void Start()
     {
+        print("HeroDamageHandler Start");
         currentHealth = maxHealth;
         collisionHandler.OnCollisionEnter += HandleCollisionEnter;
         collisionHandler.OnTriggerEnter += HandleTriggerEnter;
-        
+        print("currentHealth " + currentHealth);
     }
 
     private void HandleCollisionEnter(Collision2D collision, string tag){
@@ -72,8 +73,7 @@ public class HeroDamageHandler : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("PLAYER DEAD");
-        // TODO: call respawn / game over event here
+        Debug.Log("PLAYER DEAD");        
     }
 
 
@@ -81,5 +81,10 @@ public class HeroDamageHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         callback?.Invoke();
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
     }
 }

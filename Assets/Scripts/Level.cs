@@ -13,12 +13,13 @@ public class Level : MonoBehaviour
     [SerializeField]  private GameObject heroPrefab;
     [SerializeField]  private SoundManager soundManager;
     [SerializeField]  private TakeableItemManager takeableItemManager;
-    [SerializeField]  private FinalPresenter finalPresenter;
+    [SerializeField] private FinalPresenter finalPresenter;    
+    [SerializeField]  private Hud hud;
     
-
+/*
     [Header("Notifiers")]
-    public Action OnHeroHurt;
-    public Action OnHeroDead;
+     public Action OnHeroHurt;
+    public Action OnHeroDead; */
 
     private SetTimeoutUtility timeout;
     private SetTimeoutUtility timeout2;
@@ -30,6 +31,7 @@ public class Level : MonoBehaviour
         timeout2 = new SetTimeoutUtility(this);
         SetupManagers();
         SetupHero();
+        SetupHud();
     }
 
     private void SetupManagers(){
@@ -40,6 +42,8 @@ public class Level : MonoBehaviour
 
     private void HandleCoinTake(){
         soundManager.HandleCoinTake();
+        var nCoins = takeableItemManager.GetNCoinsTaken();
+        hud.UpdateCoins(nCoins);
     }
 
     private void HandleTouchCheckpoint(){
@@ -59,11 +63,13 @@ public class Level : MonoBehaviour
     private void SetupHero(){
         hero.OnFinishDeadAnimation += HandleFinishDeadAnimation;
         hero.OnHeroHurt += HandleHeroHurt;
-        hero.OnHeroDead += OnHeroDead;
+        //hero.OnHeroDead += OnHeroDead;
     }
 
     private void HandleHeroHurt(){
         soundManager.HandleHeroHurt();
+        var health = hero.GetHeroHealth();
+        hud.UpdateHearts(health);
     }
     
     private void HandleHeroDied(){
@@ -78,6 +84,17 @@ public class Level : MonoBehaviour
         RespanwnHero();
     }
 
+    private void SetupHud()
+    {
+        Debug.Log("SetupHud");
+        hud.InitHud();
+        var nCoins = takeableItemManager.GetNCoinsTaken();
+        hud.UpdateCoins(nCoins);
+        var health = hero.GetHeroHealth();
+        Debug.Log(" health " + health);
+        hud.UpdateHearts(health);
+    }
+
     private void RespanwnHero()
     {
         timeout.SetTimeout(() =>
@@ -90,6 +107,9 @@ public class Level : MonoBehaviour
             SetupHero();
             cameraManager.FollowHero(hero.GetHeroCollider().transform);
 
+            //this should come from a centralized place
+            hud.UpdateHearts(3);
+
         }, 2f);
     }
 
@@ -98,7 +118,7 @@ public class Level : MonoBehaviour
         timeout.SetTimeout(() =>
         {
             //restart checkpoints
-            checkpointManager.ResetCheckpoints();
+            checkpointManager.ResetCheckpoints();            
 
             //restart coins
             takeableItemManager.ResetTakenCoins();
@@ -115,6 +135,12 @@ public class Level : MonoBehaviour
 
             //reset Final presenter
             finalPresenter.ResetFinalMessage();
+
+            //reset hud
+            var nCoins = takeableItemManager.GetNCoinsTaken();
+            hud.UpdateCoins(nCoins);
+             //this should come from a centralized place
+            hud.UpdateHearts(3);
 
         }, 6f);
 

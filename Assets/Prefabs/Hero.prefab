@@ -881,7 +881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionHandler: {fileID: 6302184453055962563}
-  maxHealth: 2
+  maxHealth: 3
   coolDown: 2
 --- !u!1 &6811251736608525117
 GameObject:

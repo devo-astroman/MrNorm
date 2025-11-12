@@ -46441,6 +46441,7 @@ MonoBehaviour:
   soundManager: {fileID: 1868574342}
   takeableItemManager: {fileID: 810226980}
   finalPresenter: {fileID: 1079499540}
+  hud: {fileID: 1891366579}
 --- !u!1 &866422037
 GameObject:
   m_ObjectHideFlags: 0
@@ -86342,6 +86343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1891366578}
+  - component: {fileID: 1891366579}
   m_Layer: 0
   m_Name: Hud
   m_TagString: Untagged
@@ -86365,6 +86367,19 @@ Transform:
   - {fileID: 757010411}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1891366579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891366577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79dc8e33c7f73f9429e0eed7fba2a94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _document: {fileID: 757010412}
 --- !u!1001 &1894690470
 PrefabInstance:
   m_ObjectHideFlags: 0

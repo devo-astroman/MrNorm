@@ -63,9 +63,15 @@ public class TakeableItemManager : MonoBehaviour
         }
     }
 
-    public List<TakeableItem> GetCoinsTaken(){
+    public List<TakeableItem> GetCoinsTaken()
+    {
 
         return coinsTaken;
+    }
+    
+    public int GetNCoinsTaken(){
+
+        return coinsTaken.Count;
     }
 
     public int GetNTotalCoins()
