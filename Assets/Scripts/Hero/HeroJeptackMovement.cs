@@ -88,12 +88,12 @@ public class HeroJetpackMovement : MonoBehaviour
     public void RefillFuel(float seconds) => fuel = Mathf.Clamp(fuel + seconds, 0f, fuelSeconds);
 
     // For quick HUD/debug
-    void OnGUI()
+/*     void OnGUI()
     {
         GUI.Label(new Rect(10, 10, 250, 30), $"Fuel: {fuel:0.0}/{fuelSeconds:0.0}");
         GUI.Label(new Rect(10, 30, 250, 30), $"Vel: {rb2D.velocity}");
         GUI.Label(new Rect(10, 50, 250, 30), "Hold CTRL to thrust");
-    }
+    } */
 
     public bool GetIsJetpackOn(){
         return engineOn;

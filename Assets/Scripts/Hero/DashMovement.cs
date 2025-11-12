@@ -160,7 +160,7 @@ public class DashMovement : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
+/* #if UNITY_EDITOR
     // Optional gizmos to visualize checks and target
     private void OnDrawGizmosSelected()
     {
@@ -182,5 +182,5 @@ public class DashMovement : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(t.position, (Vector2)t.position + dir.normalized * wallCheckDistance);
     }
-#endif
+#endif */
 }

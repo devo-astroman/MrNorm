@@ -1,0 +1,20 @@
+#hudRoot {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+#leftContainer {
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-left;
+    width: 50%;
+}
+
+#rightLabel {
+    color: rgb(14, 233, 26);
+    -unity-text-align: upper-right;
+    width: 50%;
+    padding-right: 10px;
+}
