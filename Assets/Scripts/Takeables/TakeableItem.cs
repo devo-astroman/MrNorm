@@ -32,7 +32,7 @@ public class TakeableItem : MonoBehaviour
     public void Show()
     {
         collisionHandler.ActiveCollisions();
-        sRenderer.enabled = false;
+        sRenderer.enabled = true;
     }
 
     public int GetId()

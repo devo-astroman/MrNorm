@@ -42,7 +42,7 @@ public class TakeableItemManager : MonoBehaviour
         foreach (TakeableItem c in allCoins)
         {
             if (c == null) continue;
-            c.OnTakeItem -= OnItemTaken; // ✅ Correct: remove event listener
+            c.OnTakeItem -= OnItemTaken; 
         }
     }
 
@@ -68,7 +68,19 @@ public class TakeableItemManager : MonoBehaviour
         return coinsTaken;
     }
 
-    public int GetNTotalCoins(){
+    public int GetNTotalCoins()
+    {
         return nTotalCoins;
+    }
+
+    public void ResetTakenCoins()
+    {
+        foreach (TakeableItem c in allCoins)
+        {
+            c.Show();
+        }
+
+        coinsTaken.Clear();
+
     }
 }

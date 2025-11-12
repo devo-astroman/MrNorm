@@ -16,7 +16,9 @@ public class FinalPresenter : MonoBehaviour
     [SerializeField] private GameObject trophy;
 
     [SerializeField] private GameObject canvas;
-    [SerializeField] private TMP_Text messageText; 
+    [SerializeField] private TMP_Text messageText;
+
+    [SerializeField] private Collider2D detector;
 
     private SetTimeoutUtility timeout;
 
@@ -37,7 +39,11 @@ public class FinalPresenter : MonoBehaviour
     {
         Debug.Log("Process final!");
 
+        detector.enabled = false;
+
         timeout.SetTimeout(() => {
+
+            
 
             OnShowCongrats?.Invoke();
 
@@ -82,13 +88,30 @@ public class FinalPresenter : MonoBehaviour
         goldMedal.SetActive(true);
     }
 
-    private void showTrophy(){
+    private void showTrophy()
+    {
         trophy.SetActive(true);
     }
 
-    private void showMessage(int nCoins, string medal){
+    private void HideAllPrizes()
+    {
+        bronzeMedal.SetActive(false);
+        silverMedal.SetActive(false);
+        goldMedal.SetActive(false);
+        trophy.SetActive(false);
+    }
+
+    private void showMessage(int nCoins, string medal)
+    {
         messageText.text = "Congratulations! you have collected " + nCoins + " coins, so you have earnt the " + medal + " medal";
         canvas.SetActive(true);
+    }
+    
+    public void ResetFinalMessage(){
+
+        detector.enabled = true;
+        canvas.SetActive(false);
+        HideAllPrizes();
     }
 
     

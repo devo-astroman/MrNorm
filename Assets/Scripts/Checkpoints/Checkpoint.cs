@@ -34,10 +34,16 @@ public class Checkpoint : MonoBehaviour
         Check();
     }
 
-    private void Check(){
-        animator.SetTrigger("check");
+    private void Check()
+    {
+        animator.SetBool("checked", true);
         OnChecked?.Invoke(id, gameObject);
         collisionHandler.InactiveCollisions();
+    }
+    
+    public void Uncheck(){
+        animator.SetBool("checked", false);
+        collisionHandler.ActiveCollisions();
     }
 
 }

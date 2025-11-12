@@ -21,11 +21,13 @@ public class Level : MonoBehaviour
     public Action OnHeroDead;
 
     private SetTimeoutUtility timeout;
+    private SetTimeoutUtility timeout2;
 
     // Start is called before the first frame update
     void Start()
     {
         timeout = new SetTimeoutUtility(this);
+        timeout2 = new SetTimeoutUtility(this);
         SetupManagers();
         SetupHero();
     }
@@ -46,6 +48,9 @@ public class Level : MonoBehaviour
 
     private void HandleShowCongrats(){
         soundManager.HandleShowCongrats();
+
+        //restart the level in some time
+        RestartGame();
     }
 
 
@@ -75,7 +80,8 @@ public class Level : MonoBehaviour
 
     private void RespanwnHero()
     {
-        timeout.SetTimeout(() => {
+        timeout.SetTimeout(() =>
+        {
             Vector3 position = checkpointManager.GetLastCheckpointPosition();
             Destroy(hero.gameObject);
             GameObject newHero = Instantiate(heroPrefab, position, Quaternion.identity);
@@ -83,8 +89,34 @@ public class Level : MonoBehaviour
             hero = newHero.GetComponent<Hero>();
             SetupHero();
             cameraManager.FollowHero(hero.GetHeroCollider().transform);
-            
+
         }, 2f);
+    }
+
+    private void RestartGame()
+    {
+        timeout.SetTimeout(() =>
+        {
+            //restart checkpoints
+            checkpointManager.ResetCheckpoints();
+
+            //restart coins
+            takeableItemManager.ResetTakenCoins();
+
+            //locate player at start point
+            Vector3 position = checkpointManager.GetLastCheckpointPosition();
+
+            Destroy(hero.gameObject);
+            GameObject newHero = Instantiate(heroPrefab, position, Quaternion.identity);
+
+            hero = newHero.GetComponent<Hero>();
+            SetupHero();
+            cameraManager.FollowHero(hero.GetHeroCollider().transform);
+
+            //reset Final presenter
+            finalPresenter.ResetFinalMessage();
+
+        }, 6f);
 
     }
 

@@ -35,8 +35,16 @@ public class CheckpointManager : MonoBehaviour
         OnTouchCheckpoint?.Invoke();
     }
 
-    public Vector3 GetLastCheckpointPosition(){
+    public Vector3 GetLastCheckpointPosition()
+    {
         return lastCheckpointChecked.transform.position;
+    }
+    
+    public void ResetCheckpoints(){
+        lastCheckpointChecked = checkpoints[0].gameObject;
+        foreach(Checkpoint checkpoint in checkpoints ){
+            checkpoint.Uncheck();            
+        }
     }
 
 }

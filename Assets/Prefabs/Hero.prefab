@@ -932,6 +932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationManager: {fileID: 4297523418946164999}
   heroCollider: {fileID: 1001197428930479197}
+  heroDamageHandler: {fileID: 8037245028632514716}
 --- !u!1 &6865246681123710322
 GameObject:
   m_ObjectHideFlags: 0
