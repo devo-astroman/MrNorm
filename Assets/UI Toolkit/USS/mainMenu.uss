@@ -8,3 +8,11 @@
     -unity-slice-scale: 1px;
     scale: 1 1;
 }
+
+Button:hover {
+    scale: 1.15 1.15;
+}
+
+Button:active {
+    scale: 0.98 0.98;
+}

@@ -18,6 +18,8 @@ public class MainMenu : MonoBehaviour
 
     public void HandleStartButtonClick()
     {
+        //show the loading sprite
+
         //jump to the other scene
         Debug.Log("Start button clicked");
         gameSceneManager.GoPlay();
