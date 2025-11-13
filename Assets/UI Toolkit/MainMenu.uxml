@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/mainMenu.uss?fileID=7433441132597879392&amp;guid=9ddaf83097e9933469f5ea4446d4aa5c&amp;type=3#mainMenu" />
+    <ui:VisualElement name="RootContainer" style="flex-grow: 1; width: 375px; height: 667px; align-items: center;">
+        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MiddleImg" style="background-image: url(&quot;project://database/Assets/Sprites/MainMenu/MainMenuMiddleImage.png?fileID=2800000&amp;guid=b8139a5438470e84986dd5f05f9a7823&amp;type=3#MainMenuMiddleImage&quot;); width: 336px; height: 404px; margin-top: 80px; -unity-text-align: upper-center;" />
+        <ui:Button text="Start" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StartButton" style="background-image: url(&quot;project://database/Assets/Sprites/MainMenu/MainMenuButton.png?fileID=2800000&amp;guid=2ded2d09a291f36488cd92ba4177509e&amp;type=3#MainMenuButton&quot;); color: rgb(255, 255, 255); -unity-font-style: bold; font-size: 37px; width: 200px; align-items: auto; align-self: center; background-color: rgba(188, 188, 188, 0); margin-top: 24px;" />
+    </ui:VisualElement>
+</ui:UXML>

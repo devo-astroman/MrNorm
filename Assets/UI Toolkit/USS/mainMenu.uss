@@ -1,0 +1,10 @@
+#RootContainer {
+    background-image: url("project://database/Assets/Sprites/Background/MainMenuBackground.png?fileID=2800000&guid=2358e21a3bbe1d545b9172b5f41bda4e&type=3#MainMenuBackground");
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-slice-left: 0;
+    -unity-slice-top: 0;
+    -unity-slice-right: 0;
+    -unity-slice-bottom: 0;
+    -unity-slice-scale: 1px;
+    scale: 1 1;
+}

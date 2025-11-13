@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    /* [Header("Hero")]
-    [SerializeField] private HeroDamageHandler heroDamageHandler;
-    [SerializeField] private HeroJetpackMovement heroJetpackMovement; */
 
     [Header("Player")]
-    [SerializeField] private PlayerSfx playerSfx;
+    [SerializeField] private PlayerSfx playerSfx;    
 
 
     void Start(){
