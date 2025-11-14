@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
@@ -95,10 +93,7 @@ public class AnimationManager : MonoBehaviour
             jetpackOnDead.SetActive(true);
             jetpackSpriteRenderer.enabled = false;
         }
-
-    }
-
-    
+    }    
 
     private void Flip(float velocityX){
 
@@ -185,7 +180,6 @@ public class AnimationManager : MonoBehaviour
             if (state.normalizedTime >= 1f && !state.loop && !deadAnimationHasEnded)
             {
                 deadAnimationHasEnded = true;
-                Debug.Log("MN_die finished!");
                 PlayFallJetpack();
                 OnFinishDeadAnimation?.Invoke();
             }

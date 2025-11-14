@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Elevator : MonoBehaviour
@@ -10,7 +7,6 @@ public class Elevator : MonoBehaviour
 
 
     [SerializeField] private ElevatorStart elevatorStart;
-    //[SerializeField] private Transform entrance;
 
     private SetIntervalUtility interval;
     private bool isLooping = false;
@@ -56,7 +52,6 @@ public class Elevator : MonoBehaviour
     public void CloneTravelerAtEntrance(){        
 
         if(!isTraveling){
-            //activeTraveler = Instantiate(travelerPrefab, Vector2.zero, Quaternion.identity);
             activeTraveler = CreateTraveler();
             elevatorStart.PlaceAtEntrace(activeTraveler.transform);
 

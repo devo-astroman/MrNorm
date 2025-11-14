@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HorizontalMovement : MonoBehaviour
@@ -9,7 +7,7 @@ public class HorizontalMovement : MonoBehaviour
     [SerializeField]  private Rigidbody2D rb;
 
     [Header("Horizontal Movement")]
-    [SerializeField] private float horizontalSpeed = 5f;        // Optional left/right move (A/D or arrows)
+    [SerializeField] private float horizontalSpeed = 5f;
 
     public void SetHorizontalSpeed(float hSpeed)
     {
@@ -21,10 +19,8 @@ public class HorizontalMovement : MonoBehaviour
         horizontalSpeed *= -1;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Horizontal input (optional)
         float x = 1;
         Vector2 v = rb.velocity;
         v.x = x * horizontalSpeed;

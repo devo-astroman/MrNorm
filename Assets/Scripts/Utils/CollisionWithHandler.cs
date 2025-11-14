@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,8 +5,6 @@ public class CollisionWithHandler: MonoBehaviour
 {
     [Header("Target to compare With")]
     [SerializeField] private Collider2D targetCollider2D;
-
-
     
     [Header("Notifiers")]
     public UnityEvent FireCollisionEnter;
@@ -28,11 +25,9 @@ public class CollisionWithHandler: MonoBehaviour
     public void SetTargetCollider2D(Collider2D coll2D){
         targetCollider2D = coll2D;
     }
-
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("OnCollisionEnter ");
         if (isActive && collision.collider == targetCollider2D)
         {
             FireCollisionEnter?.Invoke();
@@ -41,7 +36,6 @@ public class CollisionWithHandler: MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("OnTriggerenter ");
         if (isActive && collision == targetCollider2D)
         {
             FireTriggerEnter?.Invoke();

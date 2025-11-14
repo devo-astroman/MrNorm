@@ -30,7 +30,7 @@ public class DashMovement : MonoBehaviour
     private Dir currentDir = Dir.None;
     private float nextDashTime = 0f;
 
-    // NEW: absolute time when dash should stop
+    
     private float dashEndTime = 0f;
 
     void Update()

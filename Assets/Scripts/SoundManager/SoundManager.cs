@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -18,12 +16,10 @@ public class SoundManager : MonoBehaviour
     }
 
     public void PlayCoinSfx(){
-        Debug.Log("Play coin");
         playerSfx.PlayCoinSfx();
     }
 
     public void PlayHurtSfx(){
-        Debug.Log("Play hurt");
         playerSfx.PlayHurtSfx();
     }
 

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Level : MonoBehaviour
@@ -14,12 +11,8 @@ public class Level : MonoBehaviour
     [SerializeField]  private SoundManager soundManager;
     [SerializeField]  private TakeableItemManager takeableItemManager;
     [SerializeField] private FinalPresenter finalPresenter;    
-    [SerializeField]  private Hud hud;
-    
-/*
-    [Header("Notifiers")]
-     public Action OnHeroHurt;
-    public Action OnHeroDead; */
+    [SerializeField]  private Hud hud;    
+
 
     private SetTimeoutUtility timeout;
     private SetTimeoutUtility timeout2;
@@ -63,7 +56,6 @@ public class Level : MonoBehaviour
     private void SetupHero(){
         hero.OnFinishDeadAnimation += HandleFinishDeadAnimation;
         hero.OnHeroHurt += HandleHeroHurt;
-        //hero.OnHeroDead += OnHeroDead;
     }
 
     private void HandleHeroHurt(){
@@ -79,19 +71,16 @@ public class Level : MonoBehaviour
 
     private void HandleFinishDeadAnimation()
     {
-        Debug.Log("HandleFinishDeadAnimation");
         cameraManager.FollowFallingJetpack();
         RespanwnHero();
     }
 
     private void SetupHud()
     {
-        Debug.Log("SetupHud");
         hud.InitHud();
         var nCoins = takeableItemManager.GetNCoinsTaken();
         hud.UpdateCoins(nCoins);
         var health = hero.GetHeroHealth();
-        Debug.Log(" health " + health);
         hud.UpdateHearts(health);
     }
 

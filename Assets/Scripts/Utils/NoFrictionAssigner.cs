@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NoFrictionAssigner : MonoBehaviour
 {
-
     [SerializeField] private Rigidbody2D rb2D; 
     [SerializeField] private PhysicsMaterial2D pm2D;
 

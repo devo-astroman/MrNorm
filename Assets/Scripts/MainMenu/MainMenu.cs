@@ -5,23 +5,16 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private MainMenuUIDocument mainMenuUIDocument;
     [SerializeField] private GameSceneManager gameSceneManager;
-
-    
     
     public Action OnStartButtonClick;
 
     void Start()
     {
-        Debug.Log("Start main menu");
         mainMenuUIDocument.OnStartButtonClick += HandleStartButtonClick;
     }
 
     public void HandleStartButtonClick()
     {
-        //show the loading sprite
-
-        //jump to the other scene
-        Debug.Log("Start button clicked");
         gameSceneManager.GoPlay();
     }
     

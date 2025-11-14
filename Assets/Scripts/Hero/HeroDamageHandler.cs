@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
+
 
 public class HeroDamageHandler : MonoBehaviour
 {
-
     [SerializeField] private CollisionHandler collisionHandler;
 
     [Header("Health values")]
@@ -23,20 +22,16 @@ public class HeroDamageHandler : MonoBehaviour
 
     private void Start()
     {
-        print("HeroDamageHandler Start");
         currentHealth = maxHealth;
         collisionHandler.OnCollisionEnter += HandleCollisionEnter;
-        collisionHandler.OnTriggerEnter += HandleTriggerEnter;
-        print("currentHealth " + currentHealth);
+        collisionHandler.OnTriggerEnter += HandleTriggerEnter;     
     }
 
     private void HandleCollisionEnter(Collision2D collision, string tag){
-        Debug.Log("On collision Enter HeroDamageHandler " + tag);
         NotifyDamage();
     }
 
     private void HandleTriggerEnter(Collider2D collision, string tag){
-        Debug.Log("On TriggerEnter2D Enter HeroDamageHandler " + tag);
         NotifyDamage();
     }
 
@@ -50,7 +45,6 @@ public class HeroDamageHandler : MonoBehaviour
             if(currentHealth == 0){
                 OnDied?.Invoke();
             }else{
-                //OnHealthDown?.Invoke();
                 StartCoroutine(SetTimeout(() => {
                     allowDamage=true;
                 }, coolDown));

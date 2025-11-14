@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
 
 public class Hud : MonoBehaviour
@@ -13,10 +10,18 @@ public class Hud : MonoBehaviour
     private Label heart3Label;
     private Label coinsLabel;
 
+    private bool uiLoaded = false;
+
     void Start()
     {
+        if(!uiLoaded){
+            GetUIElements();
+            uiLoaded = true;
+        }
+    }
 
-
+    private void GetUIElements()
+    {
         // Initial queries to get every ui element
         var root = _document.rootVisualElement;
 
@@ -29,6 +34,11 @@ public class Hud : MonoBehaviour
 
     public void InitHud()
     {
+        if(!uiLoaded){
+            GetUIElements();
+            uiLoaded = true;
+        }
+
         heart1Label.style.display = DisplayStyle.Flex;
         heart2Label.style.display = DisplayStyle.Flex;
         heart3Label.style.display = DisplayStyle.Flex;

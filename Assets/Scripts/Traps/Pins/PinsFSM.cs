@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using KevinCastejon.FiniteStateMachine;
 
@@ -81,13 +78,6 @@ public class PinsFSM : AbstractFiniteStateMachine
                 TransitionToState(States.STATE_IDLESHOW);                
             }, deps.timeToShow);
         }
-        public override void OnUpdate()
-        {
-        }
-        public override void OnExit()        
-        {
-            
-        }
     }
     public class StateIdleshowState : AbstractState
     {
@@ -95,10 +85,6 @@ public class PinsFSM : AbstractFiniteStateMachine
 
         public void Setup(ref Dependencies dependencies) {
             deps = dependencies;
-        }
-
-        private void Awake()
-        {
         }
 
         public override void OnEnter()
@@ -110,13 +96,6 @@ public class PinsFSM : AbstractFiniteStateMachine
                 TransitionToState(States.STATE_IDLEHIDE);
                 
             }, deps.timeToHide);
-        }
-        public override void OnUpdate()
-        {
-        }
-        public override void OnExit()
-        {
-
         }
     }
 

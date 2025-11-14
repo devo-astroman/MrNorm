@@ -1,13 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ElevatorEnd : MonoBehaviour
 {
-
     [SerializeField] private Animator animator;
-
     [SerializeField] private GameObject travelerTarget;
     [SerializeField] private CollisionWithHandler collisionWithHandler;
     
@@ -19,7 +14,6 @@ public class ElevatorEnd : MonoBehaviour
     public void CloseElevator(){
         animator.SetTrigger("close");
     }
-
 
     public void SetTravelerTarget(GameObject traveler){
         travelerTarget = traveler;

@@ -6,7 +6,6 @@ using TMPro;
 
 public class FinalPresenter : MonoBehaviour
 {
-
     [SerializeField] private TakeableItemManager takeableItemManager;
 
     [SerializeField] private GameObject bronzeMedal;
@@ -95,7 +94,7 @@ public class FinalPresenter : MonoBehaviour
     private void showMessage(int nCoins, string medal)
     {
         topText.text = $"Congrats! you have collected {nCoins} coins.";
-        bottomText.text = $"You have earnt the {medal} medal!";
+        bottomText.text = $"You have earned the {medal} medal!";
     }
     
     public void ResetFinalMessage(){

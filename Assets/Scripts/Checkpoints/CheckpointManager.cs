@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
@@ -30,7 +28,6 @@ public class CheckpointManager : MonoBehaviour
 
     private void HandleChecked(int id, GameObject checkpointGO)
     {
-        Debug.Log("Last " + id);
         lastCheckpointChecked = checkpointGO;
         OnTouchCheckpoint?.Invoke();
     }
@@ -39,12 +36,22 @@ public class CheckpointManager : MonoBehaviour
     {
         return lastCheckpointChecked.transform.position;
     }
-    
-    public void ResetCheckpoints(){
+
+    public void ResetCheckpoints()
+    {
         lastCheckpointChecked = checkpoints[0].gameObject;
-        foreach(Checkpoint checkpoint in checkpoints ){
-            checkpoint.Uncheck();            
+        foreach (Checkpoint checkpoint in checkpoints)
+        {
+            checkpoint.Uncheck();
         }
     }
+
+    void Destroy() { 
+        foreach(Checkpoint checkpoint in checkpoints ){
+
+            checkpoint.OnChecked -= HandleChecked;
+        }
+    }
+
 
 }

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
@@ -40,10 +38,16 @@ public class Checkpoint : MonoBehaviour
         OnChecked?.Invoke(id, gameObject);
         collisionHandler.InactiveCollisions();
     }
-    
-    public void Uncheck(){
+
+    public void Uncheck()
+    {
         animator.SetBool("checked", false);
         collisionHandler.ActiveCollisions();
+    }
+    
+    void Destroy()
+    {
+        collisionHandler.OnTriggerEnter -= HandleTriggerEnter;
     }
 
 }

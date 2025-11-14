@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using KevinCastejon.FiniteStateMachine;
 
@@ -97,10 +94,6 @@ public class SawDiscFSM : AbstractFiniteStateMachine
             deps = dependencies;
         }
 
-        private void Awake()
-        {
-        }
-
         public override void OnEnter()
         {
             
@@ -110,13 +103,6 @@ public class SawDiscFSM : AbstractFiniteStateMachine
                 TransitionToState(States.NO_SPIN);
                 
             }, deps.timeToStopSpin);
-        }
-        public override void OnUpdate()
-        {
-        }
-        public override void OnExit()
-        {
-
         }
     }
 

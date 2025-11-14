@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicSfx : MonoBehaviour
@@ -13,7 +11,6 @@ public class MusicSfx : MonoBehaviour
     }
 
     public void PlayMusic(){
-        Debug.Log("Play music");
         aSource.clip = musicClip;
         aSource.Play();
     }
